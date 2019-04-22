@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RockApi", "RockApi\RockApi.csproj", "{54959FA1-8A7B-475D-8FB6-F6D6A0A70307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\DomainModel.csproj", "{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionRoot", "CompositionRoot\CompositionRoot.csproj", "{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E7542D5-4A7F-4F04-B2E5-2A69DE4B3EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
