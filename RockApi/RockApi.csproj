@@ -14,4 +14,9 @@
     <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CompositionRoot\CompositionRoot.csproj" />
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
+  </ItemGroup>
+
 </Project>
