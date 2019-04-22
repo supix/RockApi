@@ -76,9 +76,8 @@ namespace RockApi
             container.RegisterMvcControllers(app);
             container.RegisterMvcViewComponents(app);
 
-            // Add application services. For instance:
-            //container.Register<IUserService, UserService>(Lifestyle.Scoped);
-            #warning Here you have to wire your services
+            // Add application services.
+            CompositionRoot.RootBindings.Bind(container);
 
             // Allow Simple Injector to resolve services from ASP.NET Core.
             container.AutoCrossWireAspNetComponents(app);
