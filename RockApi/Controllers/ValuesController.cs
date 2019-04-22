@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DomainModel.FakeInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RockApi.Controllers
@@ -10,11 +11,18 @@ namespace RockApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IMyFakeInterface myFakeInterface;
+
+        public ValuesController(IMyFakeInterface myFakeInterface)
+        {
+            this.myFakeInterface = myFakeInterface ?? throw new ArgumentNullException(nameof(myFakeInterface));
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2", "3 + 2 = " + this.myFakeInterface.Sum(3, 2).ToString() };
         }
 
         // GET api/values/5
