@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly: InternalsVisibleTo("CompositionRoot")]
+[assembly: InternalsVisibleTo("DomainModel.Test")]
 namespace DomainModel.FakeInterfaces
 {
     class MyFakeImplementation : IMyFakeInterface

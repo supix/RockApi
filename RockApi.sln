@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositionRoot", "CompositionRoot\CompositionRoot.csproj", "{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel.Test", "DomainModel.Test\DomainModel.Test.csproj", "{729B9C9B-7003-43F6-9F03-1A9B420D9C01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55AC25DE-07BD-4F7E-BF0D-0796ADBB847F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729B9C9B-7003-43F6-9F03-1A9B420D9C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729B9C9B-7003-43F6-9F03-1A9B420D9C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729B9C9B-7003-43F6-9F03-1A9B420D9C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729B9C9B-7003-43F6-9F03-1A9B420D9C01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
