@@ -19,6 +19,7 @@
     <ProjectReference Include="..\CompositionRoot\CompositionRoot.csproj" />
     <ProjectReference Include="..\CQRS\CQRS.csproj" />
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
+    <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@ using SimpleInjector.Lifestyles;
 using SimpleInjector.Integration.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Logging;
 
 namespace RockApi
 {
@@ -53,6 +54,8 @@ namespace RockApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            LogConfigurator.Configure();
+
             InitializeContainer(app);
 
             // Add custom middleware
