@@ -5,7 +5,6 @@ using System.Text;
 using CQRS.Commands;
 using CQRS.Queries;
 using DomainModel.CQRS.Queries.GetIntSum;
-using DomainModel.FakeInterfaces;
 using SimpleInjector;
 
 namespace CompositionRoot
@@ -14,8 +13,6 @@ namespace CompositionRoot
     {
         public static void Bind(Container container)
         {
-            container.Register<IMyFakeInterface, MyFakeImplementation>(Lifestyle.Scoped);
-
             var assemblies = new Assembly[]
             {
                 typeof(GetIntSumQuery).Assembly

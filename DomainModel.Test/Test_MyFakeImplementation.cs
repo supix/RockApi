@@ -1,4 +1,4 @@
-using DomainModel.FakeInterfaces;
+using DomainModel.CQRS.Queries.GetIntSum;
 using NUnit.Framework;
 
 namespace Tests
@@ -8,11 +8,10 @@ namespace Tests
         [Test]
         public void TheSumIsCorrect()
         {
-            var instance = new MyFakeImplementation();
-            var a = 2;
-            var b = 3;
+            var handler = new GetIntSumQueryHandler();
+            var query = new GetIntSumQuery() { First = 2, Second = 3 };
 
-            var sum = instance.Sum(a, b);
+            var sum = handler.Handle(query);
 
             Assert.That(sum, Is.EqualTo(5));
         }
@@ -20,11 +19,10 @@ namespace Tests
         [Test]
         public void WorksWithNegatives()
         {
-            var instance = new MyFakeImplementation();
-            var a = -2;
-            var b = -3;
+            var handler = new GetIntSumQueryHandler();
+            var query = new GetIntSumQuery() { First = -2, Second = -3 };
 
-            var sum = instance.Sum(a, b);
+            var sum = handler.Handle(query);
 
             Assert.That(sum, Is.EqualTo(-5));
         }
@@ -32,11 +30,10 @@ namespace Tests
         [Test]
         public void WorksWithAZero()
         {
-            var instance = new MyFakeImplementation();
-            var a = 10;
-            var b = 0;
+            var handler = new GetIntSumQueryHandler();
+            var query = new GetIntSumQuery() { First = 10, Second = 0 };
 
-            var sum = instance.Sum(a, b);
+            var sum = handler.Handle(query);
 
             Assert.That(sum, Is.EqualTo(10));
         }
