@@ -19,6 +19,10 @@ namespace CompositionRoot
             // the great generics support provided by SimpleInjector.
             container.Register(typeof(CQRS.Commands.ICommandHandler<>), assemblies);
             container.Register(typeof(CQRS.Queries.IQueryHandler<,>), assemblies);
+
+            container.RegisterDecorator(
+                typeof(CQRS.Queries.IQueryHandler<,>),
+                typeof(Logging.CQRS.QueryHandlerLogDecorator<,>));
         }
     }
 }
