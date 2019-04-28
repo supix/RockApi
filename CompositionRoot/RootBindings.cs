@@ -23,6 +23,10 @@ namespace CompositionRoot
             container.RegisterDecorator(
                 typeof(CQRS.Queries.IQueryHandler<,>),
                 typeof(Logging.CQRS.QueryHandlerLogDecorator<,>));
+
+            container.RegisterDecorator(
+                typeof(CQRS.Commands.ICommandHandler<>),
+                typeof(Logging.CQRS.CommandHandlerLogDecorator<>));
         }
     }
 }
