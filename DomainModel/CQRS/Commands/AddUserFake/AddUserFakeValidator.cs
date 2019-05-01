@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CQRS.Commands.Validators;
+using CQRS.Validation;
 
 namespace DomainModel.CQRS.Commands.AddUserFake
 {

@@ -20,11 +20,17 @@ namespace CompositionRoot
             container.Register(typeof(CQRS.Commands.ICommandHandler<>), assemblies);
             container.Register(typeof(CQRS.Queries.IQueryHandler<,>), assemblies);
 
-            //The following two lines perform the batch registration of the validators
+            //The following two lines perform the batch registration of the command validators
             container.Collection.Register(typeof(CQRS.Commands.Validators.ICommandValidator<>), assemblies);
             container.RegisterDecorator(
                 typeof(CQRS.Commands.ICommandHandler<>),
                 typeof(CQRS.Commands.Validators.ValidatingCommandHandlerDecorator<>));
+
+            //The following two lines perform the batch registration of the query validators
+            container.Collection.Register(typeof(CQRS.Queries.Validators.IQueryValidator<,>), assemblies);
+            container.RegisterDecorator(
+                typeof(CQRS.Queries.IQueryHandler<,>),
+                typeof(CQRS.Queries.Validators.ValidatingQueryHandlerDecorator<,>));
 
             container.RegisterDecorator(
                 typeof(CQRS.Queries.IQueryHandler<,>),

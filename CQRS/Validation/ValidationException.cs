@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CQRS.Commands.Validators
+namespace CQRS.Validation
 {
     public class ValidationException : Exception
     {
