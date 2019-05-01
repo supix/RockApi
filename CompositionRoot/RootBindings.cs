@@ -20,6 +20,12 @@ namespace CompositionRoot
             container.Register(typeof(CQRS.Commands.ICommandHandler<>), assemblies);
             container.Register(typeof(CQRS.Queries.IQueryHandler<,>), assemblies);
 
+            //The following two lines perform the batch registration of the command authorizers
+            container.Collection.Register(typeof(CQRS.Commands.Authorizers.ICommandAuthorizer<>), assemblies);
+            container.RegisterDecorator(
+                typeof(CQRS.Commands.ICommandHandler<>),
+                typeof(CQRS.Commands.Authorizers.AuthorizingCommandHandlerDecorator<>));
+
             //The following two lines perform the batch registration of the command validators
             container.Collection.Register(typeof(CQRS.Commands.Validators.ICommandValidator<>), assemblies);
             container.RegisterDecorator(
