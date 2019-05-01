@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="serilog" Version="2.8.0" />
+  </ItemGroup>
+
 </Project>

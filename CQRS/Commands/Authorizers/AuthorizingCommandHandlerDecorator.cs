@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CQRS.Authorization;
+using Serilog;
 
 namespace CQRS.Commands.Authorizers
 {
@@ -21,6 +22,8 @@ namespace CQRS.Commands.Authorizers
 
         public void Handle(TCommand command)
         {
+            Log.Debug("Now authorizing");
+
             var authorizationResults = (
                 from authorizer in this.authorizers
                 from result in authorizer.Authorize(command)
