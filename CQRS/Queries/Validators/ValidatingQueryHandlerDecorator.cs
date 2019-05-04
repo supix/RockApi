@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using CQRS.Validation;
+using Serilog;
 
 namespace CQRS.Queries.Validators
 {
@@ -21,6 +22,8 @@ namespace CQRS.Queries.Validators
 
         public TResult Handle(TQuery command)
         {
+            Log.Debug("Now validating");
+
             var validationResults = (
                 from validator in this.validators
                 from result in validator.Validate(command)
