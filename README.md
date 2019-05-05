@@ -71,7 +71,7 @@ Following the commit history, you can reach a very good comprehension about the 
 
 ## Libraries used
 
-RockApi uses [SimpleInjector](https://simpleinjector.org/index.html) library to implement the Dependency Inversion principle, according to the SOLID methodology. The great support for generics allows to have a crystal clear infrastructure for injecting action phases as cross-cutting concerns, making heavy use of the [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern).
+RockApi uses [Simple Injector](https://simpleinjector.org/index.html) library to implement the Dependency Inversion principle, according to the SOLID methodology. The great support for generics allows to have a crystal clear infrastructure for injecting action phases as cross-cutting concerns, making heavy use of the [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern).
 
 Logging is implemented by using the [Serilog](https://serilog.net/) library. It is highly configurable through a great number of plugins.
 
@@ -96,7 +96,7 @@ Validation, authorization and notification are optional. In case of need, one or
 
 A command can be created by defining the DTO first:
 
-```
+```c#
 public class MyNewCommand
 {
     public string Foo { get; set; }
@@ -108,7 +108,7 @@ public class MyNewCommand
 
 Then, the command handler must be created:
 
-```
+```c#
 public class MyNewCommandHandler : ICommandHandler<MyNewCommand>
 {
     public void Handle(MyNewCommand command)
@@ -122,7 +122,7 @@ public class MyNewCommandHandler : ICommandHandler<MyNewCommand>
 
 DTO validation can be added simply by creating a class like this:
 
-```
+```c#
 public class MyNewCommandValidator : ICommandValidator<MyNewCommand>
 {
     public IEnumerable<ValidationResult> Validate(MyNewCommand command)
@@ -142,7 +142,7 @@ The class is automatically inserted in the action execution chain. If the valida
 
 Action authorization can be implemented simply by creating a class like this:
 
-```
+```c#
 public class MyNewCommandAuthorizer : ICommandAuthorizer<MyNewCommand>
 {
     public IEnumerable<AuthorizationResult> Authorize(MyNewCommand command)
@@ -182,7 +182,7 @@ The class is automatically inserted in the action execution chain. As always, sh
 
 When all the command classes are set up, the command must be exposed through a WebApi controller. After creating a plain WebApi controller, you have to inject the command through [constructor injection](https://en.wikipedia.org/wiki/Dependency_injection#Constructor_injection), as follows:
 
-```
+```c#
 [Route("api/[controller]")]
 [ApiController]
 public class MyNewController : ControllerBase
@@ -223,7 +223,7 @@ Validation, authorization and notification are optional. In case of need, one or
 
 A query can be created by defining the input DTO first:
 
-```
+```c#
 public class MyNewQuery : IQuery<MyNewQueryResult>
 {
     public string Foo { get; set; }
@@ -235,7 +235,7 @@ public class MyNewQuery : IQuery<MyNewQueryResult>
 
 Beside the input DTO, queries have an output DTO as well:
 
-```
+```c#
 public class MyNewQueryResult
 {
     public string FooBar { get; set; }
@@ -247,7 +247,7 @@ public class MyNewQueryResult
 
 Then, the query handler must be created:
 
-```
+```c#
 public class MyNewQuerydHandler : IQueryHandler<MyNewQuery, MyNewQueryResult>
 {
     public MyNewQueryResult Handle(MyNewQuery query)
@@ -261,7 +261,7 @@ public class MyNewQuerydHandler : IQueryHandler<MyNewQuery, MyNewQueryResult>
 
 DTO validation can be added simply by creating a class like this:
 
-```
+```c#
 public class MyNewQueryValidator : IQueryValidator<MyNewQuery, MyNewQueryResult>
 {
     public IEnumerable<ValidationResult> Validate(MyNewQuery query)
@@ -281,7 +281,7 @@ The class is automatically inserted in the action execution chain. If the valida
 
 Action authorization can be implemented simply by creating a class like this:
 
-```
+```c#
 public class MyNewQueryAuthorizer : IQueryAuthorizer<MyNewQuery, MyNewQueryResult>
 {
     public IEnumerable<AuthorizationResult> Authorize(MyNewQuery query)
@@ -301,7 +301,7 @@ The class is automatically inserted in the action execution chain. Also in this 
 
 When all the query classes are set up, the query must be exposed through a WebApi controller. After creating a plain WebApi controller, you have to inject the query through [constructor injection](https://en.wikipedia.org/wiki/Dependency_injection#Constructor_injection), as follows:
 
-```
+```c#
 [Route("api/[controller]")]
 [ApiController]
 public class MyNewerController : ControllerBase
