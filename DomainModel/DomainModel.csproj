@@ -10,7 +10,8 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
+    <Folder Include="CQRS\Commands\" />
+    <Folder Include="CQRS\Queries\" />
     <Folder Include="Services\" />
   </ItemGroup>
-
 </Project>
