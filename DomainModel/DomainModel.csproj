@@ -8,4 +8,9 @@
     <ProjectReference Include="..\CQRS\CQRS.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
