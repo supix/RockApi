@@ -81,6 +81,8 @@ CQRS principle is implemented by using plain classes and did not request for inc
 
 ## Developing with RockApi
 
+RockApi has a branch called `production_ready`. You can use this branch to start a real-world project. All the classes written just for educational purposes have been removed from this branch.
+
 Once cloned the RockApi repository, it is time to add commands and queries to implement the desired functionalities. Commands and queries can be added in the DomainModel project, below the CQRS folder.
 
 ### Adding a command
