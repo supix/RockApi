@@ -1,18 +1,10 @@
-﻿// You'll need to include the following namespaces
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Http;
-
 using SimpleInjector;
-using SimpleInjector.Lifestyles;
-using SimpleInjector.Integration.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Logging;
 
 namespace RockApi
@@ -31,24 +23,24 @@ namespace RockApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+
+            services.AddLogging();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             IntegrateSimpleInjector(services);
         }
 
         private void IntegrateSimpleInjector(IServiceCollection services)
         {
-            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-
-            services.AddHttpContextAccessor();
-
-            services.AddSingleton<IControllerActivator>(
-                new SimpleInjectorControllerActivator(container));
-            services.AddSingleton<IViewComponentActivator>(
-                new SimpleInjectorViewComponentActivator(container));
-
-            services.EnableSimpleInjectorCrossWiring(container);
-            services.UseSimpleInjectorAspNetRequestScoping(container);
+            services.AddSimpleInjector(container, options =>
+            {
+                options.AddAspNetCore()
+                    .AddControllerActivation()
+                    .AddViewComponentActivation()
+                    .AddPageModelActivation()
+                    .AddTagHelperActivation();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,12 +48,21 @@ namespace RockApi
         {
             LogConfigurator.Configure();
 
-            InitializeContainer(app);
+            app.UseSimpleInjector(container, options =>
+            {
+#warning Add custom Simple Injector-created middleware to the ASP.NET pipeline.
+                //options.UseMiddleware<CustomMiddleware1>(app);
+                //options.UseMiddleware<CustomMiddleware2>(app);
+            });
+
+            InitializeContainer();
+
+            // Always verify the container
+            container.Verify();
 
             // Add custom middleware
             //app.UseMiddleware<CustomMiddleware1>(container);
             //app.UseMiddleware<CustomMiddleware2>(container);
-            #warning Here you can add custom middleware
 
             container.Verify();
 
@@ -73,17 +74,9 @@ namespace RockApi
             app.UseMvc();
         }
 
-        private void InitializeContainer(IApplicationBuilder app)
+        private void InitializeContainer()
         {
-            // Add application presentation components:
-            container.RegisterMvcControllers(app);
-            container.RegisterMvcViewComponents(app);
-
-            // Add application services.
             CompositionRoot.RootBindings.Bind(container);
-
-            // Allow Simple Injector to resolve services from ASP.NET Core.
-            container.AutoCrossWireAspNetComponents(app);
         }
     }
 }
