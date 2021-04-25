@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CQRS\CQRS.csproj" />
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
   </ItemGroup>
 
 </Project>

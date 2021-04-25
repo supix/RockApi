@@ -12,6 +12,9 @@
     <ProjectReference Include="..\CQRS\CQRS.csproj" />
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
     <ProjectReference Include="..\Logging\Logging.csproj" />
+    <ProjectReference Include="..\MessageBus_Fake\MessageBus_Fake.csproj" />
+    <ProjectReference Include="..\Persistence_FakeDatabase\Persistence_FakeDatabase.csproj" />
+    <ProjectReference Include="..\Persistence_MongoDB\Persistence_MongoDB.csproj" />
   </ItemGroup>
 
 </Project>

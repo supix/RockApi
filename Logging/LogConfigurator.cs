@@ -10,8 +10,7 @@ namespace Logging
         public static void Configure()
         {
             var log = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace()
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
                 .CreateLogger();
 
             Log.Logger = log;
