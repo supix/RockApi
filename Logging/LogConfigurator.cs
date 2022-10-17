@@ -9,14 +9,26 @@ namespace Logging
     {
         public static void Configure()
         {
+            /* var log = new LoggerConfiguration()
+                 .MinimumLevel.Debug()
+                 .WriteTo.Trace()
+                 .CreateLogger();*/
+
+            /*var log = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               .WriteTo.Trace()
+               .WriteTo.File("logs/application_log.txt", rollingInterval: RollingInterval.Day)
+               .CreateLogger();*/
+
             var log = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace()
-                .CreateLogger();
+               .MinimumLevel.Debug()
+               .WriteTo.Trace()
+               .WriteTo.File("logs/application_log.txt", rollingInterval: RollingInterval.Day)
+               .CreateLogger();
 
             Log.Logger = log;
 
-            Log.Debug("Log configured");
+            Log.Information("Log configured");
         }
     }
 }

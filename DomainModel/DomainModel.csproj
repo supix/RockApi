@@ -1,16 +1,45 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Microsoft.Extensions.Options" />
+    <None Remove="Microsoft.IdentityModel.Tokens" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove=".DS_Store" />
+    <None Remove="CQRS\.DS_Store" />
+    <None Remove="Services\placeholder" />
+    <None Remove="Services\" />
+    <None Remove="CQRS\Queries\GetUsers\" />
+    <None Remove="CQRS\Commands\User\" />
+    <None Remove="CQRS\Commands\User\AddUser\" />
+    <None Remove="CQRS\Commands\User\UpdateUser\" />
+    <None Remove="CQRS\Commands\User\DeleteUser\" />
+    <None Remove="Classes\Users\" />
+    <None Remove="Services\User\" />
+    <None Remove="CQRS\Queries\AuthUsers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\NpgsqlConnection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="CQRS\Queries\GetUsers\" />
+    <Folder Include="CQRS\Commands\User\" />
+    <Folder Include="CQRS\Commands\User\AddUser\" />
+    <Folder Include="CQRS\Commands\User\UpdateUser\" />
+    <Folder Include="CQRS\Commands\User\DeleteUser\" />
+    <Folder Include="Classes\User\" />
+    <Folder Include="Services\User\" />
+    <Folder Include="CQRS\Queries\AuthUsers\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CQRS\CQRS.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

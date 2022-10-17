@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "Logging\Logging.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{471330FC-6AB1-4DED-AE75-663BEBF7D42E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.SQLServer", "Persintence.SQLServer\Persistence.SQLServer.csproj", "{79CABA16-CF02-4CE1-9C20-99FD610AD23A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,11 +49,18 @@ Global
 		{04BCF465-4B53-4C1E-8AE9-187103CBAD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04BCF465-4B53-4C1E-8AE9-187103CBAD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04BCF465-4B53-4C1E-8AE9-187103CBAD4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CABA16-CF02-4CE1-9C20-99FD610AD23A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CABA16-CF02-4CE1-9C20-99FD610AD23A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CABA16-CF02-4CE1-9C20-99FD610AD23A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CABA16-CF02-4CE1-9C20-99FD610AD23A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99E9866A-4CA2-4DD5-BCBA-BE3B46E9C290}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79CABA16-CF02-4CE1-9C20-99FD610AD23A} = {471330FC-6AB1-4DED-AE75-663BEBF7D42E}
 	EndGlobalSection
 EndGlobal

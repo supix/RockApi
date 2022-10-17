@@ -1,12 +1,5 @@
 # RockApi: a SOLID oriented, CQRS compliant WebApi RESTful template
 
-## The article
-
-The RockAPI project is described in detail in the following article.
-
-* [The RockAPI article (PDF - English language)](/docs/RockAPI_v1.1_en.pdf)
-* [The RockAPI article (PDF - Italian language)](/docs/RockAPI_v1.1_it.pdf)
-
 ## Introduction
 
 RockApi is a template project that can be used as a startup project to write RESTful backends which follow the [SOLID methodology](https://en.wikipedia.org/wiki/SOLID) and are compliant to the [CQRS paradigm](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation). It is implemented in .NET core WebApi.

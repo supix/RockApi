@@ -7,6 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
 using Logging;
 using Microsoft.Extensions.Hosting;
+using DomainModel.Classes;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
+using Persistence.SQLServer.data;
+using System;
 
 namespace RockApi
 {
@@ -27,6 +34,58 @@ namespace RockApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.AddControllers();
+
+
+            // Configure ConnectionString DB by Appsetting
+
+            //IServiceCollection serviceCollection = services.AddDbContext<CIRDbContext>(
+            //    o => o.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+
+            //IServiceCollection serviceCollection = services.AddDbContext<CIRDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("SqlServer"),
+            //        sqlServerOptionsAction: sqlOptions =>
+            //        {
+            //            sqlOptions.EnableRetryOnFailure(
+            //            maxRetryCount: 5,
+            //            maxRetryDelay: TimeSpan.FromSeconds(30),
+            //            errorNumbersToAdd: null);
+            //        }
+            //    );
+            //});
+
+            //ServiceCollection serviceCollection = (ServiceCollection)services.AddDbContext<CIRDbContext>();
+
+            IServiceCollection serviceCollection = services.AddDbContextPool<CIRDbContext>(
+                o => o.UseSqlServer(Configuration.GetConnectionString("SqlServer")),30); // poolSize aggiunto = 30 , default = 1024
+
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // configure jwt authentication
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
             services.AddControllers();
 
             IntegrateSimpleInjector(services);
@@ -66,6 +125,7 @@ namespace RockApi
             // UseSimpleInjector() finalizes the integration process.
             app.UseSimpleInjector(container);
 
+            /***********************************************/
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -74,17 +134,23 @@ namespace RockApi
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            /***********************************************/
 
             app.UseRouting();
+
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials               
+
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            // Add custom middleware
-            //app.UseMiddleware<CustomMiddleware1>(container);
-            //app.UseMiddleware<CustomMiddleware2>(container);
 
             LogConfigurator.Configure();
 

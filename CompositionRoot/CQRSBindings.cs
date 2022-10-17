@@ -13,7 +13,7 @@ namespace CompositionRoot
         {
             var assemblies = new Assembly[]
             {
-                typeof(DomainModel.CQRS.Queries.GetIntSum.GetIntSumQuery).Assembly
+                typeof(DomainModel.Placeholder).Assembly
             };
 
             // The following two lines perform the batch registration by using
