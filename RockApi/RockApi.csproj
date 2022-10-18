@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.9.0" />
+    <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="5.4.0" />
   </ItemGroup>
 
   <ItemGroup>
